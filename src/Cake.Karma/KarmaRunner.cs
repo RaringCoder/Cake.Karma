@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using Cake.Core;
 using Cake.Core.IO;
@@ -88,10 +89,12 @@ namespace Cake.Karma
             {
                 throw new InvalidOperationException($"{nameof(KarmaRunnerLocal<TSettings>)} used, but the settings don't specify {nameof(KarmaRunMode.Local)}");
             }
-            
-            if (!FileSystem.Exist(settings.LocalKarmaCli))
+
+            var localKarmaCliPath = GetWorkingDirectoryFullPath(settings.WorkingDirectory, settings.LocalKarmaCli);
+
+            if (!FileSystem.Exist(localKarmaCliPath))
             {
-                var karmaFile = settings.LocalKarmaCli.MakeAbsolute(Environment).ToString();
+                var karmaFile = localKarmaCliPath.MakeAbsolute(Environment).ToString();
                 throw new FileNotFoundException($"Cannot find the specified Karma CLI file for KarmaRunMode.Local: {karmaFile}");
             }
         }
@@ -182,13 +185,29 @@ namespace Cake.Karma
             if (settings.ConfigFile == null)
             {
                 throw new ArgumentNullException("settings.ConfigFile", "A config file must be specified.");
-            }
+            }                        
 
-            if (!FileSystem.Exist(settings.ConfigFile))
+            var configFilePath = GetWorkingDirectoryFullPath(settings.WorkingDirectory, settings.ConfigFile);
+
+            if (!FileSystem.Exist(configFilePath))
             {
-                var configFile = settings.ConfigFile.MakeAbsolute(Environment).ToString();
+                var configFile = configFilePath.MakeAbsolute(Environment).ToString();
                 throw new FileNotFoundException($"Cannot find the specified config file: {configFile}");
             }
+        }
+
+
+        /// <summary>
+        /// Gets the filepath absolute when exist working drectory or relative if not.
+        /// </summary>
+        /// <param name="workingDirectory">The working directory.</param>
+        /// <param name="filePath">The file path.</param>
+        /// <returns>the path of file</returns>
+        protected FilePath GetWorkingDirectoryFullPath(DirectoryPath workingDirectory, FilePath filePath )
+        {
+            return workingDirectory == null ?
+                filePath :
+                workingDirectory.MakeAbsolute(Environment).CombineWithFilePath(filePath);
         }
     }
 }

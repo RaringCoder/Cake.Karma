@@ -3,10 +3,19 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
     <DebugType>pdbonly</DebugType>
-
-    <Copyright>Copyright © Cake Contributions 2017 - Present</Copyright>
-    <Company>Cake Contributions</Company>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <IncludeSymbols>true</IncludeSymbols>
+
+    <Authors>Adam Houldsworth</Authors>
+    <Company>Cake Contributions</Company>
+    <Copyright>Copyright © Cake Contributions 2017 - Present</Copyright>
+    <Description>A set of aliases for Cake to help with running Karma as part of a build.</Description>
+    <PackageIconUrl>https://cdn.jsdelivr.net/gh/cake-contrib/graphics/png/cake-contrib-medium.png</PackageIconUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/cake-contrib/Cake.Karma/</PackageProjectUrl>
+    <PackageTags>Cake Script Build Karma Addin</PackageTags>
+    <RepositoryUrl>$(PackageProjectUrl.TrimEnd('/')).git</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>

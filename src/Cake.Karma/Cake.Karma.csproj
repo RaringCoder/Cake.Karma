@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net461</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
     <DebugType>pdbonly</DebugType>
 
     <Copyright>Copyright © Cake Contributions 2017 - Present</Copyright>

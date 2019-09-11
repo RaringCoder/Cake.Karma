@@ -253,6 +253,14 @@
             <exception cref="T:System.ArgumentNullException">Thrown if the config file setting value is null.</exception>
             <exception cref="T:System.IO.FileNotFoundException">Thrown if the config file cannot be located.</exception>
         </member>
+        <member name="M:Cake.Karma.KarmaRunner`1.GetWorkingDirectoryFullPath(Cake.Core.IO.DirectoryPath,Cake.Core.IO.FilePath)">
+            <summary>
+            Gets the filepath absolute when exist working drectory or relative if not.
+            </summary>
+            <param name="workingDirectory">The working directory.</param>
+            <param name="filePath">The file path.</param>
+            <returns>the path of file</returns>
+        </member>
         <member name="T:Cake.Karma.KarmaRunnerFactory">
             <summary>
             The karma runner factory, determines which runner to use based on run mode.
